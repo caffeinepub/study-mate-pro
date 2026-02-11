@@ -1,0 +1,19 @@
+{
+  "frontend/src/App.tsx": "Main application component that wraps the entire app with ThemeProvider, renders Header, HomePage content, Footer, and Toaster for notifications.",
+  "frontend/src/lib/goldenRatio.ts": "Exports documented golden ratio constants (MAJOR: 0.618, MINOR: 0.382, PHI: 1.618) and utility functions for use across layout components.",
+  "frontend/src/components/layout/GoldenSplit.tsx": "Reusable layout component that applies golden ratio split (61.8%/38.2%) to two-panel layouts, stacking vertically on small screens and horizontally on md+ screens.",
+  "frontend/src/lib/utils.ts": "Utility function for merging Tailwind CSS classes using clsx and tailwind-merge.",
+  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks file for encapsulating backend operations and managing data invalidation (currently contains example hook structure).",
+  "frontend/src/components/layout/Header.tsx": "Global header with branding, authentication status display, and sign in/out functionality that clears React Query cache on logout.",
+  "frontend/src/components/layout/Footer.tsx": "Global footer component with \"Study Mate Pro by John\" copyright notice, educational purpose disclaimer, and Caffeine.ai attribution with UTM tracking.",
+  "frontend/src/pages/HomePage.tsx": "Main landing page with hero section, file upload/list section (visible only when authenticated), feature cards, and getting started guide using golden ratio layout.",
+  "frontend/src/vite-env.d.ts": "TypeScript environment declarations for Vite to enable proper type checking during frontend build.",
+  "frontend/src/index.css": "Global styles with OKLCH color system defining design tokens for light and dark modes using CSS variables.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration extending the theme with OKLCH color tokens, custom border radius, shadows, and animations.",
+  "frontend/src/hooks/useUserFiles.ts": "React Query hooks for file upload and listing operations with TODO comments indicating backend methods need implementation; currently returns empty array for list and throws descriptive error for upload.",
+  "frontend/src/components/files/FileUploadPanel.tsx": "File upload component with file picker, upload button, loading states, success/error alerts, and authentication gating that blocks uploads when signed out.",
+  "frontend/src/components/files/UploadedFilesList.tsx": "Component displaying the authenticated user's uploaded files list with file metadata (name, type, size, date) and loading/error states.",
+  "frontend/src/backend.d.ts": "TypeScript interface definitions for the backend canister, including the _initializeAccessControlWithSecret method required by the useActor hook, user profile types, and role-based access control methods.",
+  "frontend/BUILD_VERIFICATION.md": "Documentation describing the step-by-step frontend build verification process, common issues and solutions, and success criteria to catch build errors before deployment.",
+  "frontend/package.json": "Frontend package configuration with added 'verify' script that runs TypeScript type checking followed by production build to catch errors before deployment."
+}

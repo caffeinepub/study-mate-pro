@@ -1,0 +1,71 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-11T06:21:50.593Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-25",
+        "summary": "Reproduce the current deployment/build failure and fix the underlying error(s) so the project builds and deploys successfully without errors.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/backend.d.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/backend.d.ts"
+        ]
+      },
+      {
+        "id": "REQ-26",
+        "summary": "Fix any Motoko compilation/deployment issues in `backend/main.mo`, including resolving invalid or missing module imports and ensuring all included mixins and exposed methods referenced by the frontend actor (e.g., `_initializeAccessControlWithSecret`) exist and compile under the single-actor architecture.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-27",
+        "summary": "Fix any frontend build errors that block deployment, ensuring the React+TypeScript app compiles successfully (including hooks and components that import the generated backend actor types).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/backend.d.ts",
+          "frontend/src/hooks/useUserFiles.ts",
+          "frontend/src/components/files/UploadedFilesList.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/backend.d.ts"
+        ]
+      },
+      {
+        "id": "REQ-28",
+        "summary": "Add a lightweight regression-prevention check so future changes do not reintroduce the deployment/build failure (e.g., a documented local build/deploy command sequence and/or a simple build verification step that runs both backend and frontend compilation).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/BUILD_VERIFICATION.md",
+          "frontend/package.json"
+        ],
+        "matchedFiles": [
+          "frontend/BUILD_VERIFICATION.md"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/BUILD_VERIFICATION.md",
+    "frontend/src/backend.d.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

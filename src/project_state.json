@@ -1,0 +1,308 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 13,
+  "summary": "Student-focused web app where users upload educational files, specify what they want from the content, receive detailed bullet-point study materials, get audio translations (especially Telugu/English plus more languages), use an AI buddy/search engine, and download the processed outputs. Simple email-only login (no verification). Rebrand UI to “Study Mate Pro” and update header/footer branding to replace/remove John Trademark image and show “Study Mate Pro by John”.",
+  "architectural_notes": [
+    "Use email-only authentication without verification (no email confirmation step).",
+    "Adopt golden-ratio (1:1.618) proportions for primary UI layout splits (e.g., main vs sidebar, key panels/boxes).",
+    "Header and footer branding should display “Study Mate Pro by John” and remove/replace the prior “John Trademark” image branding.",
+    "Backend currently lacks any file-upload API; implement Motoko canister methods to accept file bytes + metadata per signed-in caller principal, return stable file IDs, and support list/download endpoints wired to the frontend."
+  ],
+  "known_issues": [
+    "Deployment/build encountered an error; user requests error-free deployment.",
+    "File upload is not working (user cannot upload files).",
+    "Backend file upload API is missing (frontend shows 'File upload is not yet implemented in the backend'); needs implementation and wiring."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-an-email-only-sign-in-flow-no-email-verification-that-gates-access-to-the-app-and-persists-the-current-user-session-on-refresh",
+      "title": "Create an email-only sign-in flow (no email verification) that gates access to the app and persists the current user session on refresh.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-educational-file-upload-allowing-users-to-upload-one-or-more-files-and-store-the-original-file-bytes-and-metadata-filename-type-size-uploadedat-for-later-download",
+      "title": "Implement educational file upload allowing users to upload one or more files and store the original file bytes and metadata (filename, type, size, uploadedAt) for later download.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-file-upload-ask-the-user-what-they-want-from-the-uploaded-content-via-an-ai-engine-like-guided-form-e-g-goal-exam-type-depth-number-of-bullet-points-focus-topics-output-format",
+      "title": "After file upload, ask the user what they want from the uploaded content via an AI-engine-like guided form (e.g., goal, exam type, depth, number of bullet points, focus topics, output format).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-detailed-study-materials-in-bullet-point-form-from-the-uploaded-file-content-based-on-the-user-s-requested-preferences-and-display-the-results-in-a-student-friendly-viewer",
+      "title": "Generate detailed study materials in bullet-point form from the uploaded file content based on the user’s requested preferences, and display the results in a student-friendly viewer.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-multilingual-audio-output-for-generated-materials-with-language-selection-emphasizing-telugu-and-english-and-support-additional-languages-where-available",
+      "title": "Provide multilingual audio output for generated materials, with language selection emphasizing Telugu and English, and support additional languages where available.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-download-options-for-processed-outputs-based-on-the-user-s-desired-wish-at-minimum-download-generated-materials-as-txt-and-markdown-also-allow-downloading-the-original-uploaded-file",
+      "title": "Add download options for processed outputs based on the user’s desired wish (at minimum: download generated materials as TXT and Markdown; also allow downloading the original uploaded file).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-ai-buddy-experience-a-search-and-ask-interface-that-lets-students-search-across-their-uploaded-processed-materials-and-ask-questions-returning-answers-grounded-in-the-user-s-stored-content",
+      "title": "Implement an “AI Buddy” experience: a search-and-ask interface that lets students search across their uploaded/processed materials and ask questions, returning answers grounded in the user’s stored content.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-consistent-student-focused-visual-theme-and-layout-colors-typography-spacing-and-component-styling-suitable-for-competitive-exam-preparation-and-apply-it-across-all-screens",
+      "title": "Create a consistent student-focused visual theme and layout (colors, typography, spacing, and component styling) suitable for competitive exam preparation, and apply it across all screens.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-global-header-and-footer-on-all-pages-that-include-the-text-branding-john-trademark-and-for-educational-purposes-only",
+      "title": "Add a global header and footer on all pages that include the text branding “John Trademark” and “For educational purposes only”.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-static-assets-pipeline-for-generated-images-and-render-the-generated-images-in-the-ui-e-g-app-logo-mascot-used-in-header-and-or-buddy-panel",
+      "title": "Add a static-assets pipeline for generated images and render the generated images in the UI (e.g., app logo/mascot used in header and/or buddy panel).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-primary-app-screen-layout-to-follow-golden-ratio-proportions-approximately-1-1-618-using-a-consistent-rule-for-key-splits-e-g-main-content-vs-side-panel-across-all-major-screens",
+      "title": "Update the primary app screen layout to follow golden-ratio proportions (approximately 1:1.618), using a consistent rule for key splits (e.g., main content vs. side panel) across all major screens.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-golden-ratio-sizing-using-reusable-layout-primitives-styles-e-g-a-shared-layout-component-and-or-tailwind-utility-composition-so-that-future-sections-can-opt-into-the-same-1-1-618-split-without-duplicating-styling-logic",
+      "title": "Implement the golden-ratio sizing using reusable layout primitives/styles (e.g., a shared layout component and/or Tailwind utility composition) so that future sections can opt into the same 1:1.618 split without duplicating styling logic.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-project-so-it-builds-and-deploys-successfully-without-errors-resolving-the-underlying-deployment-build-failure-and-preventing-regressions",
+      "title": "Fix the project so it builds and deploys successfully without errors, resolving the underlying deployment/build failure and preventing regressions.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-global-header-to-remove-the-existing-john-trademark-wordmark-image-and-replace-it-with-the-text-branding-study-mate-pro-by-john",
+      "title": "Update the global header to remove the existing “John Trademark” wordmark image and replace it with the text branding “Study Mate Pro by John”.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-global-footer-branding-text-to-replace-john-trademark-with-study-mate-pro-by-john-while-keeping-for-educational-purposes-only",
+      "title": "Update the global footer branding text to replace “John Trademark” with “Study Mate Pro by John” while keeping “For educational purposes only.”",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-repair-the-frontend-file-upload-ui-and-wire-it-to-the-backend-actor-so-that-after-a-user-signs-in-they-can-select-one-or-more-files-upload-them-and-see-confirmation-plus-an-updated-list-of-uploaded-files",
+      "title": "Add/repair the frontend file-upload UI and wire it to the backend actor so that, after a user signs in, they can select one or more files, upload them, and see confirmation plus an updated list of uploaded files.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-actor-wiring-so-the-frontend-calls-the-correct-backend-canister-methods-with-the-active-internet-identity-and-ensure-the-upload-call-is-made-with-the-authenticated-identity-not-anonymous-when-signed-in",
+      "title": "Fix actor wiring so the frontend calls the correct backend canister methods with the active Internet Identity, and ensure the upload call is made with the authenticated identity (not anonymous) when signed in.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-user-facing-error-handling-for-common-upload-failures-e-g-backend-rejection-file-too-large-unsupported-type-network-error-with-clear-english-messages-and-ensure-failures-do-not-leave-the-ui-in-a-stuck-loading-state",
+      "title": "Add user-facing error handling for common upload failures (e.g., backend rejection, file too large, unsupported type, network error) with clear English messages, and ensure failures do not leave the UI in a stuck loading state.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-project-builds-and-deploys-successfully-after-the-upload-fix-with-no-typescript-or-motoko-compile-errors",
+      "title": "Ensure the project builds and deploys successfully after the upload fix, with no TypeScript or Motoko compile errors.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-frontend-file-hooks-in-frontend-src-hooks-useuserfiles-ts-to-call-the-real-backend-canister-methods-remove-stubs-including-converting-browser-file-objects-into-the-backend-s-expected-upload-payload-format-and-returning-real-data-for-the-uploaded-files-list",
+      "title": "Update the frontend file hooks in `frontend/src/hooks/useUserFiles.ts` to call the real backend canister methods (remove stubs), including converting browser `File` objects into the backend’s expected upload payload format and returning real data for the uploaded-files list.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-project-builds-and-deploys-successfully-after-adding-the-backend-upload-api-and-updating-the-frontend-hooks-with-no-motoko-or-typescript-compile-errors",
+      "title": "Ensure the project builds and deploys successfully after adding the backend upload API and updating the frontend hooks, with no Motoko or TypeScript compile errors.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-reproduce-the-current-deployment-build-failure-and-fix-the-underlying-error-s-so-the-project-builds-and-deploys-successfully-without-errors",
+      "title": "Reproduce the current deployment/build failure and fix the underlying error(s) so the project builds and deploys successfully without errors.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-any-frontend-build-errors-that-block-deployment-ensuring-the-react-typescript-app-compiles-successfully-including-hooks-and-components-that-import-the-generated-backend-actor-types",
+      "title": "Fix any frontend build errors that block deployment, ensuring the React+TypeScript app compiles successfully (including hooks and components that import the generated backend actor types).",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-lightweight-regression-prevention-check-so-future-changes-do-not-reintroduce-the-deployment-build-failure-e-g-a-documented-local-build-deploy-command-sequence-and-or-a-simple-build-verification-step-that-runs-both-backend-and-frontend-compilation",
+      "title": "Add a lightweight regression-prevention check so future changes do not reintroduce the deployment/build failure (e.g., a documented local build/deploy command sequence and/or a simple build verification step that runs both backend and frontend compilation).",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Upload educational files for processing into study materials",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Generate detailed bullet-point notes/materials from uploaded files",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Ask users what they want from the uploaded files (AI-guided requirements/prompting)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Audio translation/output in multiple languages with focus on Telugu and English",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Download option for processed outputs/files according to user’s desired format/results",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Simple email-only login (no email verification)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Include AI buddy search engine feature",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Custom header and footer branded as 'John Trademark' for educational purposes only",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Apply golden-ratio (1:1.618) based layout proportions to key UI areas (e.g., main content vs side panel)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Rebrand app UI: rename to “Study Mate Pro” and update header/footer branding to “Study Mate Pro by John”, removing/replacing the old “John Trademark” image",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement the missing backend API for file upload so that signed-in users can successfully store uploaded file bytes and metadata in the canister, scoped per user (caller principal), and return a stable identifier for each uploaded file.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Implement a backend file-upload API in `backend/main.mo` that allows an authenticated caller to upload a file (bytes + metadata), stores the uploaded content scoped to the caller principal, and returns a stable file identifier plus metadata.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Implement backend methods to list the authenticated caller’s uploaded files and to download a previously uploaded file by ID, enforcing that only the owner (caller) can access their own file data.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Fix any Motoko compilation/deployment issues in `backend/main.mo`, including resolving invalid or missing module imports and ensuring all included mixins and exposed methods referenced by the frontend actor (e.g., `_initializeAccessControlWithSecret`) exist and compile under the single-actor architecture.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Study Mate Pro",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

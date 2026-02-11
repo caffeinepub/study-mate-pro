@@ -1,0 +1,104 @@
+{
+  "kind": "build_request",
+  "title": "Resolve deployment/build failure so the app deploys successfully",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "text": "Reproduce the current deployment/build failure and fix the underlying error(s) so the project builds and deploys successfully without errors.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "recent-3",
+          "recent-5"
+        ],
+        "quotes": [
+          "clear the deployment error"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A clean build/deploy completes successfully (no Motoko compile errors, no TypeScript/Vite build errors).",
+        "If multiple errors exist, all must be resolved (no new errors introduced)."
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "text": "Fix any Motoko compilation/deployment issues in `backend/main.mo`, including resolving invalid or missing module imports and ensuring all included mixins and exposed methods referenced by the frontend actor (e.g., `_initializeAccessControlWithSecret`) exist and compile under the single-actor architecture.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "recent-3",
+          "recent-5"
+        ],
+        "quotes": [
+          "clear the deployment error"
+        ]
+      },
+      "acceptanceCriteria": [
+        "`backend/main.mo` compiles successfully during deployment.",
+        "All referenced imports in `backend/main.mo` resolve successfully at build time.",
+        "Any backend methods required by the generated frontend actor interface are present and compile."
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "text": "Fix any frontend build errors that block deployment, ensuring the React+TypeScript app compiles successfully (including hooks and components that import the generated backend actor types).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "recent-3",
+          "recent-5"
+        ],
+        "quotes": [
+          "clear the deployment error"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Frontend production build completes successfully with no TypeScript errors.",
+        "No invalid imports/exports or configuration errors (e.g., Tailwind/Vite config parsing issues) prevent the build."
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "text": "Add a lightweight regression-prevention check so future changes do not reintroduce the deployment/build failure (e.g., a documented local build/deploy command sequence and/or a simple build verification step that runs both backend and frontend compilation).",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "recent-3",
+          "recent-5"
+        ],
+        "quotes": [
+          "clear the deployment error"
+        ]
+      },
+      "acceptanceCriteria": [
+        "There is a clear, repeatable build verification step documented in-repo that catches the previously failing error before deployment.",
+        "Running the verification step completes successfully after fixes are applied."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor with all logic in `backend/main.mo`.",
+    "Do not modify files in `frontend/immutablePaths` (e.g., `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and `frontend/src/components/ui`).",
+    "Use English for any user-facing text."
+  ],
+  "nonGoals": [
+    "Implementing new product features unrelated to fixing the deployment/build failure.",
+    "Changing authentication providers (Internet Identity remains the only supported auth).",
+    "Introducing external databases or non-Motoko backend services."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

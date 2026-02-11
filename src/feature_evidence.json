@@ -1,0 +1,61 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-reproduce-the-current-deployment-build-failure-and-fix-the-underlying-error-s-so-the-project-builds-and-deploys-successfully-without-errors",
+      "featureTitle": "Reproduce the current deployment/build failure and fix the underlying error(s) so the project builds and deploys successfully without errors.",
+      "files": [],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-25"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-any-frontend-build-errors-that-block-deployment-ensuring-the-react-typescript-app-compiles-successfully-including-hooks-and-components-that-import-the-generated-backend-actor-types",
+      "featureTitle": "Fix any frontend build errors that block deployment, ensuring the React+TypeScript app compiles successfully (including hooks and components that import the generated backend actor types).",
+      "files": [],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-27"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-lightweight-regression-prevention-check-so-future-changes-do-not-reintroduce-the-deployment-build-failure-e-g-a-documented-local-build-deploy-command-sequence-and-or-a-simple-build-verification-step-that-runs-both-backend-and-frontend-compilation",
+      "featureTitle": "Add a lightweight regression-prevention check so future changes do not reintroduce the deployment/build failure (e.g., a documented local build/deploy command sequence and/or a simple build verification step that runs both backend and frontend compilation).",
+      "files": [
+        "frontend/BUILD_VERIFICATION.md"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0",
+        "blob-storage@4.0.0"
+      ],
+      "testIds": [
+        "REQ-28"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix frontend build/type errors blocking deployment and add verification docs",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "summary": "Resolve the frontend-side issues contributing to the current deploy/build failure so a clean build can complete.",
+      "acceptanceCriteria": [
+        "A clean build/deploy completes successfully (no Motoko compile errors, no TypeScript/Vite build errors).",
+        "If multiple errors exist, all must be resolved (no new errors introduced)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Update the generated backend actor TypeScript declarations to include any methods referenced by the immutable frontend hooks (notably the access-control initialization method invoked by frontend/src/hooks/useActor.ts) so TypeScript compilation succeeds and the frontend actor surface matches runtime usage."
+        }
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "summary": "Fix frontend build-blocking TypeScript issues, especially around generated backend actor types used by hooks/components.",
+      "acceptanceCriteria": [
+        "Frontend production build completes successfully with no TypeScript errors.",
+        "No invalid imports/exports or configuration errors (e.g., Tailwind/Vite config parsing issues) prevent the build."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Add the missing `_initializeAccessControlWithSecret(secret: string): Promise<void>` method (and any other required signatures referenced by immutable hooks) to the `backendInterface` type so frontend/src/hooks/useActor.ts compiles without type errors."
+        },
+        {
+          "path": "frontend/src/hooks/useUserFiles.ts",
+          "operation": "modify",
+          "description": "Adjust any types that may break compilation depending on TS target/lib settings (e.g., avoid `bigint` in public UI-facing types if it causes TS build issues) and ensure all React Query hooks compile cleanly without relying on unimplemented backend functions."
+        },
+        {
+          "path": "frontend/src/components/files/UploadedFilesList.tsx",
+          "operation": "modify",
+          "description": "Align rendering logic with the updated file metadata types (e.g., uploadedAt type changes) to prevent TypeScript errors in the production build."
+        }
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "summary": "Add a lightweight, repeatable frontend build verification step in-repo to catch regressions before deployment.",
+      "acceptanceCriteria": [
+        "There is a clear, repeatable build verification step documented in-repo that catches the previously failing error before deployment.",
+        "Running the verification step completes successfully after fixes are applied."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/BUILD_VERIFICATION.md",
+          "operation": "create",
+          "description": "Document a minimal local verification sequence that runs a clean frontend install and production build/typecheck (ensuring the actor type declarations include methods used by immutable hooks), so the previously failing TypeScript error is caught before deployment."
+        },
+        {
+          "path": "frontend/package.json",
+          "operation": "modify",
+          "description": "Add or update a simple verification script (e.g., a `verify` script that runs the frontend typecheck/build) to make the documented verification step one command; keep changes limited to build verification only."
+        }
+      ]
+    }
+  ]
+}
